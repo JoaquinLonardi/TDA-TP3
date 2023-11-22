@@ -18,10 +18,10 @@ class TP3Test(unittest.TestCase):
         minimo = algoritmo_backtracking(B_conjuntos_prensa)
         self.assertEqual(minimo, 3)
 
-    # def test_10_todos(self):
-    #     B_conjuntos_prensa = leer_archivo('10_todos.txt')
-    #     minimo = algoritmo_backtracking(B_conjuntos_prensa)
-    #     self.assertEqual(minimo, 10)
+    def test_10_todos(self):
+        B_conjuntos_prensa = leer_archivo('10_todos.txt')
+        minimo = algoritmo_backtracking(B_conjuntos_prensa)
+        self.assertEqual(minimo, 10)
 
     def test_10_varios(self):
         B_conjuntos_prensa = leer_archivo('10_varios.txt')
@@ -45,19 +45,19 @@ class TP3Test(unittest.TestCase):
         minimo = algoritmo_backtracking(B_conjuntos_prensa)
         self.assertEqual(minimo, 6)
 
-    # def test_75(self):
-    #     B_conjuntos_prensa = leer_archivo('75.txt')
-    #     minimo = algoritmo_backtracking(B_conjuntos_prensa)
-    #     self.assertEqual(minimo, 8)
-    #
-    # def test_100(self):
-    #     B_conjuntos_prensa = leer_archivo('100.txt')
-    #     minimo = algoritmo_backtracking(B_conjuntos_prensa)
-    #     self.assertEqual(minimo, 9)
-    # def test_200(self):
-    #     B_conjuntos_prensa = leer_archivo('200.txt')
-    #     minimo = algoritmo_backtracking(B_conjuntos_prensa)
-    #     self.assertEqual(minimo, 9)
+    def test_75(self):
+        B_conjuntos_prensa = leer_archivo('75.txt')
+        minimo = algoritmo_backtracking(B_conjuntos_prensa)
+        self.assertEqual(minimo, 8)
+
+    def test_100(self):
+        B_conjuntos_prensa = leer_archivo('100.txt')
+        minimo = algoritmo_backtracking(B_conjuntos_prensa)
+        self.assertEqual(minimo, 9)
+    def test_200(self):
+        B_conjuntos_prensa = leer_archivo('200.txt')
+        minimo = algoritmo_backtracking(B_conjuntos_prensa)
+        self.assertEqual(minimo, 9)
 
 
 
