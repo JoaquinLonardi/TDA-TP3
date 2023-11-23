@@ -1,10 +1,10 @@
 import unittest
-from algoritmo import hitting_set, leer_archivo
-
+from algoritmo import leer_archivo
+from programacion_lineal import hitting_set
 
 class TP3Test(unittest.TestCase):
     def test_5(self):
-        B_conjuntos_prensa = leer_archivo('../archivos_prueba/5.txt')
+        B_conjuntos_prensa = leer_archivo("../archivos_prueba/5.txt")
         minimo = hitting_set(B_conjuntos_prensa)
         self.assertEqual(2, minimo)
 
