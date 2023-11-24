@@ -32,7 +32,7 @@ for i in range(0, len(files)):
     sizes.append(size)
     run_times.append(run_time)
 
-with open("mediciones_pl_universo_chico.txt", mode="w") as file:
+with open("mediciones/mediciones_pl_universo_chico.txt", mode="w") as file:
     for i in range(0, len(files)):
         file.write(str(files[i]))
         file.write(',')
