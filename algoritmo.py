@@ -1,16 +1,4 @@
 import csv
-
-
-def leer_archivo(filepath):
-    conjuntos_periodistas = []
-    with open(filepath, newline='') as csvfile:
-        reader = csv.reader(csvfile)
-        for x in reader:
-            conjuntos_periodistas.append(set(x))
-
-    return conjuntos_periodistas
-
-
 def solucion_es_valida(conjuntos, solucion):
     sets_alcanzados = 0
     for conjunto in conjuntos:
@@ -36,14 +24,9 @@ def _backtrack(conjuntos, conjunto_universo, solucion_actual, solucion, idx):
     _backtrack(conjuntos, conjunto_universo, solucion_actual, solucion, idx + 1)
 
 
-def hitting_set(conjuntos, conjunto_universo=None):
-    if not conjunto_universo:
-        conjunto_universo = set()
-        for conjunto in conjuntos:
-            conjunto_universo.update(conjunto)
-
-    solucion = list(conjunto_universo)
+def hitting_set(S, U):
+    print('hitting set normal ')
+    solucion = list(U)
     solucion_actual = []
-    _backtrack(conjuntos, list(conjunto_universo), solucion_actual, solucion, 0)
-    print(solucion)
+    _backtrack(S, list(U), solucion_actual, solucion, 0)
     return len(solucion)

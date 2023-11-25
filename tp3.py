@@ -18,12 +18,12 @@ def leer_archivo(filepath):
     return conjuntos_periodistas, conjunto_universo
 
 
-if not sys.argv[1]:
+if len(sys.argv) == 1:
     print('ERROR: Falta especificar el archivo como argumento.')
     sys.exit()
 
 
-if not sys.argv[2]:
+if len(sys.argv) == 2:
     print(f"ERROR: Falta especificar el flag de función")
     sys.exit()
 
@@ -32,9 +32,9 @@ flag = sys.argv[2]
 
 if flag == '-bt':
     solucion = hitting_set(S, U)
-if flag == '-pl':
+elif flag == '-pl':
     solucion = hitting_set_pl(S, U)
-if flag == '-aprox':
+elif flag == '-aprox':
     solucion = hitting_set_aprox(S, U)
 else:
     print(f"ERROR: Flag incorrecto. Las opciones posibles son {['-bt', '-pl', '-aprox']}")

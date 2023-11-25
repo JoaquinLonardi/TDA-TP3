@@ -1,5 +1,6 @@
 import pulp
 
+
 def solucion_es_valida(conjuntos, solucion):
     sets_alcanzados = 0
     for conjunto in conjuntos:
@@ -8,20 +9,14 @@ def solucion_es_valida(conjuntos, solucion):
 
     return sets_alcanzados == len(conjuntos)
 
-def hitting_set(S, U=None):
-    if not U:
-        U = set()
-        for conjunto in S:
-            U.update(conjunto)
 
+def hitting_set_pl(S, U):
     variables_elementos = pulp.LpVariable.dicts("elemento", U, cat=pulp.LpBinary)
 
     hitting_set = pulp.LpProblem("Hitting Set Problem", pulp.LpMinimize)
     hitting_set += pulp.lpSum(variables_elementos)
 
     for conjunto in S:
-        # La suma de las variables -que van a ser 1 o 0- para cada conjunto debe ser mayor a 1. Es decir, debe tener
-        # al menos un elemento
         hitting_set += pulp.lpSum(
             variables_elementos[elemento] for elemento in conjunto
         ) >= 1
@@ -29,17 +24,13 @@ def hitting_set(S, U=None):
     hitting_set.solve()
     valores = [elemento.value() for elemento in hitting_set.variables()]
     solucion = {elemento for elemento in hitting_set.variables() if
-                elemento.value() ==1
+                elemento.value() == 1
                 }
 
-    return len(solucion), 0
+    return len(solucion)
 
-def hitting_set_bilardo(S, U=None):
-    if not U:
-        U = set()
-        for conjunto in S:
-            U.update(conjunto)
 
+def hitting_set_aprox(S, U):
     variables_elementos = pulp.LpVariable.dicts("elemento", U, lowBound=0, upBound=1)
     hitting_set_problem = pulp.LpProblem("Hitting Set Problem", pulp.LpMinimize)
 
@@ -58,10 +49,7 @@ def hitting_set_bilardo(S, U=None):
     solucion = 0
     for elemento in hitting_set_problem.variables():
         valor = elemento.value()
-        if valor >= 1/max_cardinalidad_conjunto:
+        if valor >= 1 / max_cardinalidad_conjunto:
             solucion += 1
 
-
-    print(f"Solución que me dio así nomás: {sum([elemento.value() for elemento in hitting_set_problem.variables()])}. Solución que me dio redondeando: {solucion}. Solución verdaderoa: {hitting_set(S)}. MAx cardinal {max_cardinalidad_conjunto}")
-    return solucion, max_cardinalidad_conjunto
-    # return sum([x.value() for x in hitting_set.variables()])
+    return solucion
