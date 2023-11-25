@@ -13,31 +13,61 @@ NUM_FILES = 20
 def run_algorithm(input_file, aproximado=False):
     conjuntos = leer_archivo(input_file)
     if not aproximado:
-        size = hitting_set(conjuntos)
+        size, max = hitting_set(conjuntos)
     else:
-        size = hitting_set_bilardo(conjuntos)
-    return size
+        size, max = hitting_set_bilardo(conjuntos)
+    return size, max
 
 # Create and run the algorithm on each test file, measuring run time
-files = [5, 7, 10, 15,20, 25, 30,35, 40,45, 50, 60,75,80,90, 100]
+# files = [100, 150, 200, 300, 500, 750, 1000]
+files = [10,20,30,40,50,60,70,80,90,100,200,500]
+files = [100, 200, 300]
 run_times = []
+run_times_aprox = []
 sizes_normales = []
 sizes_aproximados = []
 mayores = []
 for i in range(0, len(files)):
     file_name = f"set{files[i]}.txt"
-    size, _ = run_algorithm(f"sets_mediciones_normales/{file_name}")
-    size_aproximado, mayor = run_algorithm(f"sets_mediciones_normales/{file_name}", True)
+    inicio = time.time()
+    size, _ = run_algorithm(f"sets_mediciones_comp_pl/{file_name}")
+    fin = time.time()
+    run_times.append(fin - inicio)
+    inicio = time.time()
+    size_aproximado, mayor = run_algorithm(f"sets_mediciones_comp_pl/{file_name}", True)
+    fin = time.time()
     # print(f"Archivo número {files[i]}: {run_time}")
+    run_times_aprox.append(fin - inicio)
     sizes_normales.append(size)
     sizes_aproximados.append(size_aproximado)
     mayores.append(mayor)
 
-with open("mediciones_comparativas_pl.csv", mode="w") as file:
-    file.write("Tamaño de archivo, medicion progamacion lineal normal, medicion programacion aproximada, Mayor elemento, r(I)")
+# with open("mediciones_grandes.csv", mode="w") as file:
+#     file.write("Tamaño de archivo, medicion progamacion lineal normal, medicion programacion aproximada, Mayor elemento, r(I)")
+#     file.write('\n')
+#     for i in range(0, len(files)):
+#         file.write(str(files[i]))
+#         file.write(',')
+#         file.write(str(sizes_normales[i]))
+#         file.write(',')
+#         file.write(str(sizes_aproximados[i]))
+#         file.write(',')
+#         file.write(str(mayores[i]))
+#         file.write(',')
+#         file.write(str(sizes_aproximados[i]/sizes_normales[i]))
+#
+#
+#         file.write('\n')
+
+with open("mediciones_exageradas.csv", mode="w") as file:
+    file.write("Tamaño de universo, medicion progamacion lineal normal, medicion programacion aproximada, valor normal, valor_aproximado, Mayor elemento, r(I)")
     file.write('\n')
     for i in range(0, len(files)):
         file.write(str(files[i]))
+        file.write(',')
+        file.write(str(run_times[i]))
+        file.write(',')
+        file.write(str(run_times_aprox[i]))
         file.write(',')
         file.write(str(sizes_normales[i]))
         file.write(',')
@@ -49,4 +79,5 @@ with open("mediciones_comparativas_pl.csv", mode="w") as file:
 
 
         file.write('\n')
+
 
