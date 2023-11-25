@@ -20,3 +20,5 @@ La flag indica qué algoritmo se desea correr:
 - aprox: corre el algoritmo de programación lineal aproximada
 
 ## Informe
+
+https://github.com/JoaquinLonardi/TDA-TP3/blob/main/Informe_TP3.pdf
