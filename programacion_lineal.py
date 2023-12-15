@@ -62,6 +62,6 @@ def hitting_set_bilardo(S, U=None):
             solucion += 1
 
 
-    print(f"Solución que me dio así nomás: {sum([elemento.value() for elemento in hitting_set_problem.variables()])}. Solución que me dio redondeando: {solucion}. Solución verdaderoa: {hitting_set(S)}. MAx cardinal {max_cardinalidad_conjunto}")
+    # print(f"Solución que me dio así nomás: {sum([elemento.value() for elemento in hitting_set_problem.variables()])}. Solución que me dio redondeando: {solucion}. Solución verdaderoa: {hitting_set(S)}. MAx cardinal {max_cardinalidad_conjunto}")
     return solucion, max_cardinalidad_conjunto
     # return sum([x.value() for x in hitting_set.variables()])
